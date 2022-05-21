@@ -1,0 +1,27 @@
+.box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin-bottom: 20px;
+}
+
+.heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.insideBox {
+    text-align: center;
+    width: 30vw;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 4px;
+    padding: 32px;
+}
+
+@media (max-width: 720px) {
+    .insideBox {
+        width: 60vw;
+    }
+}

@@ -1,0 +1,77 @@
+.container1 {
+    box-shadow: rgba(44, 44, 49, 0.2) 0px 7px 29px 0px;
+    height: 100vh;
+    width: 20em;
+    top: 0;
+    z-index: 1;
+    position: -webkit-sticky; /* Safari & IE */
+    position: sticky;
+}
+
+.container2 {
+    width: 100%;
+    padding: 4em;
+    text-align: left;
+}
+
+.mainContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.barContainer1 {
+    display: flex;
+    height: 20vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.barContainer2 {
+    display: flex;
+    flex-direction: column;
+    height: 60vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.innerContainer {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.barContainer3 {
+    display: flex;
+    flex-direction: column;
+    height: 20vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.SignOutBtn {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-evenly;
+    width: 10em;
+    background-color: #F1F1F1;
+    border-width: 0px;
+    padding: 12px 15px;
+    border-radius: 78px;
+}
+
+.optionSelected {
+    text-decoration: none;
+    color: #2A7AA7;
+    font-weight: 700;
+    border-radius: 10em;
+    padding-right: 50px;
+    padding-left: 20px;
+    border: 2px solid #2A7AA7;
+}
+
+.optionUnselected {
+    color: black;
+    text-decoration: none;
+    padding-right: 50px;
+    padding-left: 20px;
+}

@@ -1,0 +1,342 @@
+.container {
+    align-items: flex-start;
+    justify-content: flex-start;
+    text-align: left;
+    padding: 10px 0;
+}
+
+.box1 {
+    margin-block: 7em;
+}
+
+.inputContainer {
+    margin-top: -20px;
+    padding-inline: 10px;
+    background-color: white;
+    width: 95%;
+    padding-block: 7px;
+    border-radius: 5px;
+    border: 0.5px solid #B2B2B2;
+}
+
+.heading {
+    font-weight: 400;
+}
+
+.rememberMe {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: end;
+}
+
+.signinButton {
+    cursor: pointer;
+    width: 90%;
+    background-color: #2A7AA7;
+    height: 54px;
+    color: white;
+    border-width: 0px;
+    border-radius: 75px;
+}
+
+.linkButton {
+    color: black;
+}
+
+.selectPic {
+    margin-top: 20px;
+    width: 3em;
+    height: 3em;
+    cursor: pointer;
+    display: flex;
+    font-size: 20px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    color: #2A7AA7;
+    background-color: #F2E4E4;
+    border: 2px solid #2A7AA7;
+}
+
+.headingDashboard {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.customer {
+    height: 204px;
+    width: 258px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: 0px 0px 27px -8px rgba(0, 0, 0, 0.4);
+}
+
+.group {
+    font-size: 30px;
+    color: #2A7AA7;
+    margin-bottom: 20px;
+}
+
+.week {
+    margin-bottom: -20px;
+    color: #8A92A6;
+    font-family: Roboto;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 15px;
+    letter-spacing: 0em;
+    text-align: center;
+}
+
+.quantity {
+    color: #232D42;
+    font-family: Roboto;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 33px;
+    letter-spacing: 0em;
+    text-align: center;
+
+}
+
+.profit {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 27%;
+    color: white;
+    margin-top: -10px;
+    background-color: #739D5F;
+    border-radius: 7px;
+    padding: 4px 8px;
+}
+
+.loss {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 27%;
+    color: white;
+    margin-top: -10px;
+    background-color: darkred;
+    border-radius: 7px;
+    padding: 4px 8px;
+}
+
+.select {
+    height: 35px;
+}
+
+.actions {
+    color: #747474;
+    background-color: #2A7AA7;
+    border-width: 0px;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    font-size: 17px;
+    background-color: transparent;
+}
+
+.invoiceIcon {
+    display: flex;
+    border-radius: 100%;
+    width: 2em;
+    height: 2em;
+    align-items: center;
+    justify-content: center;
+    color: #2A7AA7;
+    font-size: 20px;
+    background-color: #E3D4FF;
+}
+
+.nameContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border: 1px solid #848484;
+    padding: 0px 15px;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.settingContainer {
+    cursor: pointer;
+    border-width: 0px;
+    margin-block: 20px;
+    width: 100%;
+    background-color: #F8F8F8;
+}
+
+.avatar {
+    display: flex;
+    margin: 20px 0px;
+    justify-content: center;
+}
+
+.MuiAvatar-circular {
+    width: 30px;
+    height: 30px;
+}
+
+.profilePicIcon {
+    display: flex;
+    border-radius: 100%;
+    width: 2em;
+    height: 2em;
+    align-items: center;
+    justify-content: center;
+    color: #E3D4FF;
+    border-width: 0px;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #2A7AA7;
+}
+
+.headerNewReceipt {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.addBtn {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.reasons {
+    width: 85%;
+    background-color: transparent;
+    display: flex;
+    margin-top: 15px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    border: 1px solid #9e9e9e;
+    height: 3em;
+}
+
+.selected {
+    width: 85%;
+    color: white;
+    display: flex;
+    margin-top: 15px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    border: 1px solid #9e9e9e;
+    height: 3em;
+    background-color: rgba(86, 29, 94, 0.6);
+}
+
+.countryDropdown {
+    margin-top: -20px;
+    padding-inline: 10px;
+    background-color: white;
+    width: 100%;
+    padding-block: 7px;
+    border-radius: 5px;
+    border: 0.5px solid #B2B2B2;
+}
+
+.regionDropdown {
+    margin-top: -20px;
+    padding-inline: 10px;
+    background-color: white;
+    width: 100%;
+    padding-block: 7px;
+    border-radius: 5px;
+    border: 0.5px solid #B2B2B2;
+}
+
+.merchantsOptions {
+    width: 100%;
+    display: flex;
+    border-radius: 50em;
+    overflow: hidden;
+    border: 1px solid #2A7AA7;
+    padding: 2px;
+}
+
+.optionsBtn {
+    border-width: 0px;
+    width: 100%;
+    background-color: transparent;
+    height: 3em;
+    font-weight: 500;
+}
+
+.optionsLeftSelected {
+    background-color: #2A7AA7;
+    color: #ffff;
+    border-top-left-radius: 50em;
+    border-bottom-left-radius: 50em;
+}
+
+.optionsCenterSelected {
+    background-color: #2A7AA7;
+    color: #ffff;
+}
+
+.optionsRightSelected {
+    background-color: #2A7AA7;
+    color: #ffff;
+    border-top-right-radius: 50em;
+    border-bottom-right-radius: 50em;
+}
+
+.notificationContainer {
+    margin-bottom: 20px;
+    text-decoration: none;
+    color: #282c34;
+    justify-content: space-between;
+    background-color: #F8F8F8;
+    border: 1px solid #BCBCBC;
+    width: 97%;
+}
+
+.messageContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.dateContainer {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    text-align: right;
+    text-transform: capitalize;
+}
+
+.rejectBtn {
+    display: flex;
+    cursor: pointer;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 24px;
+    color: #FF3333;
+    background: transparent;
+    border: 2px solid #FF3333;
+    width: 12em;
+    box-sizing: border-box;
+    border-radius: 75px;
+}
+
+.approvedBtn {
+    color: white;
+    background: #00950F;
+    border: none;
+}

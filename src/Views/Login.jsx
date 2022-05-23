@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { CircularProgress, InputAdornment, TextField } from '@mui/material';
+import {
+  CircularProgress, Container, InputAdornment, TextField,
+} from '@mui/material';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Controller, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { toast } from 'react-toastify';
 import Box from '../Components/Box';
 import { auth } from '../utils/firebase/firebase';
 import './views.css';
@@ -25,7 +26,6 @@ function Login() {
     signInWithEmailAndPassword,
     user,
     loading,
-    error,
   ] = useSignInWithEmailAndPassword(auth);
   const {
     handleSubmit,
@@ -34,19 +34,19 @@ function Login() {
     resolver: yupResolver(schema),
   });
 
-  useEffect(() => {
-    if (error) {
-      toast.error(error.code, {
-        position: 'top-center',
-        autoClose: 1000,
-        // hideProgressBar: true,
-        // closeOnClick: true,
-        // pauseOnHover: true,
-        // draggable: true,
-        // progress: undefined,
-      });
-    }
-  }, [error]);
+  // useEffect(() => {
+  //   if (error) {
+  // toast.error(error.code, {
+  //   position: 'top-center',
+  //   autoClose: 1000,
+  // hideProgressBar: true,
+  // closeOnClick: true,
+  // pauseOnHover: true,
+  // draggable: true,
+  // progress: undefined,
+  // });
+  //   }
+  // }, [error]);
 
   useEffect(() => {
     if (user) {
@@ -57,7 +57,7 @@ function Login() {
   const onSubmit = (e) => signInWithEmailAndPassword(e.email, e.password);
 
   return (
-    <Box>
+    <Box showHeading heading="Welcome" showBack={false}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="container">
           <Controller
@@ -125,6 +125,22 @@ function Login() {
           {loading ? <CircularProgress size={15} color="inherit" /> : 'Sign In'}
         </button>
       </form>
+      <footer>
+        <Container style={{
+          backgroundColor: 'rgba(219, 212, 41, 0.39)',
+          display: 'flex',
+          justifyContent: 'center',
+          borderRadius: '20px',
+          marginTop: '10px',
+        }}
+        >
+          <p>
+            Don’t have an account?
+            {' '}
+            <Link to="/signup">sign up</Link>
+          </p>
+        </Container>
+      </footer>
     </Box>
   );
 }

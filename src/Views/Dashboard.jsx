@@ -1,72 +1,41 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import './views.css';
 import moment from 'moment';
 import { DataGrid } from '@mui/x-data-grid';
 import {
   Avatar, FormControl, InputLabel, MenuItem, Select,
 } from '@mui/material';
+import { useCollection } from 'react-firebase-hooks/firestore';
+import { collection } from 'firebase/firestore';
 import SideBar from '../Components/SideBar/SideBar';
-
-const Yearly = [
-  {
-    id: 1, merchantName: 'Snow Jon', joinedOn: moment().format('d/mm/yyyy'), receipts: 255, profit: 500,
-  },
-  {
-    id: 2, merchantName: 'Lannister Cersei', joinedOn: moment().format('d/mm/yyyy'), receipts: 255, profit: 500,
-  },
-  {
-    id: 3, merchantName: 'Lannister Jaime', joinedOn: moment().format('d/mm/yyyy'), receipts: 255, profit: 500,
-  },
-  {
-    id: 4, merchantName: 'Stark Arya', joinedOn: moment().format('d/mm/yyyy'), receipts: 255, profit: 500,
-  },
-  {
-    id: 5, merchantName: 'Targaryen Daenerys', joinedOn: moment().format('d/mm/yyyy'), receipts: 255, profit: 500,
-  },
-  {
-    id: 6, merchantName: 'Melisandre', joinedOn: moment().format('d/mm/yyyy'), receipts: 255, profit: 500,
-  },
-  {
-    id: 7, merchantName: 'Clifford Ferrara', joinedOn: moment().format('d/mm/yyyy'), receipts: 255, profit: 500,
-  },
-  {
-    id: 8, merchantName: 'Frances Rossini', joinedOn: moment().format('d/mm/yyyy'), receipts: 255, profit: 500,
-  },
-  {
-    id: 9, merchantName: 'Roxie Harvey', joinedOn: moment().format('d/mm/yyyy'), receipts: 255, profit: 500,
-  },
-];
-const Monthly = [
-  {
-    id: 1, merchantName: 'Snow Jon', joinedOn: moment().format('d/mm/yyyy'), receipts: 255, profit: 500,
-  },
-  {
-    id: 2, merchantName: 'Lannister Cersei', joinedOn: moment().format('d/mm/yyyy'), receipts: 255, profit: 500,
-  },
-  {
-    id: 3, merchantName: 'Lannister Jaime', joinedOn: moment().format('d/mm/yyyy'), receipts: 255, profit: 500,
-  },
-  {
-    id: 4, merchantName: 'Stark Arya', joinedOn: moment().format('d/mm/yyyy'), receipts: 255, profit: 500,
-  },
-  {
-    id: 5, merchantName: 'Targaryen Daenerys', joinedOn: moment().format('d/mm/yyyy'), receipts: 255, profit: 500,
-  },
-];
-const Weekly = [
-  {
-    id: 1, merchantName: 'Snow Jon', joinedOn: moment().format('d/mm/yyyy'), receipts: 255, profit: 500,
-  },
-  {
-    id: 2, merchantName: 'Lannister Cersei', joinedOn: moment().format('d/mm/yyyy'), receipts: 255, profit: 500,
-  },
-  {
-    id: 3, merchantName: 'Lannister Jaime', joinedOn: moment().format('d/mm/yyyy'), receipts: 255, profit: 500,
-  },
-];
+import { firestore } from '../utils/firebase/firebase';
 
 function Dashboard() {
   const [time, setTime] = React.useState('Week');
+  const [snapshot, loading] = useCollection(collection(firestore, 'users'), {
+    snapshotListenOptions: { includeMetadataChanges: true },
+  });
+  const userData = useMemo(
+    () => snapshot?.docs.reduce((previousValue, currentValue) => {
+      const data = currentValue.data();
+      const timeInDays = moment(Date.now()).diff(data.createdAt.seconds * 1000, 'days');
+      if (timeInDays <= 7) {
+        previousValue.week.push({ ...data, id: currentValue.id });
+      }
+      if (timeInDays <= 30) {
+        previousValue.month.push({ ...data, id: currentValue.id });
+      }
+      if (timeInDays <= 365) {
+        previousValue.year.push({ ...data, id: currentValue.id });
+      }
+      return previousValue;
+    }, {
+      week: [],
+      month: [],
+      year: [],
+    }),
+    [snapshot],
+  );
 
   const handleChange = (event) => {
     setTime(event.target.value);
@@ -82,27 +51,28 @@ function Dashboard() {
         }}
         >
           <div className="invoiceIcon">
-            <Avatar>{params.row.merchantName.charAt(0)}</Avatar>
+            <Avatar>{params.row.name.charAt(0)}</Avatar>
           </div>
         </div>
       ),
     },
-    { field: 'merchantName', headerName: 'Merchant name', width: 270 },
-    { field: 'joinedOn', headerName: 'Joined On', width: 180 },
-    {
-      field: 'receipts',
-      headerName: 'Receipts Generated',
-      width: 180,
-    },
-    {
-      field: 'profit',
-      headerName: 'Profits',
-      width: 180,
-      valueGetter: (params) => (
-        `${params.row.profit}$`
-      ),
-    },
+    { field: 'name', headerName: 'Merchant name', width: 270 },
+    { field: 'createdAt', headerName: 'Joined On', width: 180 },
+    // {
+    //   field: 'receipts',
+    //   headerName: 'Receipts Generated',
+    //   width: 180,
+    // },
+    // {
+    //   field: 'profit',
+    //   headerName: 'Profits',
+    //   width: 180,
+    //   valueGetter: (params) => (
+    //     `${params.row.profit}$`
+    //   ),
+    // },
   ];
+
   return (
     <div>
       <SideBar>
@@ -114,7 +84,7 @@ function Dashboard() {
           <div className="customer">
             <i className="fa-solid fa-user-group group" />
             <p className="week">THIS WEEK</p>
-            <h2 className="quantity">23</h2>
+            <h2 className="quantity">{userData?.week?.length || 0}</h2>
             <div className="profit">
               <i className="fa-solid fa-arrow-up" />
               <span>3.48%</span>
@@ -122,8 +92,8 @@ function Dashboard() {
           </div>
           <div className="customer">
             <i className="fa-solid fa-user-group group" />
-            <p className="week">THIS WEEK</p>
-            <h2 className="quantity">23</h2>
+            <p className="week">THIS MONTH</p>
+            <h2 className="quantity">{userData?.month?.length || 0}</h2>
             <div className="loss">
               <i className="fa-solid fa-arrow-down" />
               <span>3.48%</span>
@@ -131,8 +101,8 @@ function Dashboard() {
           </div>
           <div className="customer">
             <i className="fa-solid fa-user-group group" />
-            <p className="week">THIS WEEK</p>
-            <h2 className="quantity">23</h2>
+            <p className="week">THIS YEAR</p>
+            <h2 className="quantity">{userData?.year?.length || 0}</h2>
             <div className="profit">
               <i className="fa-solid fa-arrow-up" />
               <span>3.48%</span>
@@ -165,13 +135,19 @@ function Dashboard() {
           </FormControl>
         </div>
         <div style={{ height: '70vh', width: '100%', marginTop: '30px' }}>
-          <DataGrid
-            getRowId={(row) => row.id}
-            rows={time === 'Week' ? Weekly : time === 'Month' ? Monthly : Yearly}
-            columns={columns}
-            pageSize={6}
-            rowsPerPageOptions={[5]}
-          />
+          {
+          loading ? <div>loading</div>
+            : (
+              <DataGrid
+                getRowId={(row) => row.id}
+                rows={userData ? time === 'Week' ? userData.week : time === 'Month' ? userData.month : userData.year : []}
+                columns={columns}
+                pageSize={6}
+                // rowsPerPageOptions={5}
+              />
+
+            )
+        }
         </div>
       </SideBar>
     </div>

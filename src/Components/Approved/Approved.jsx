@@ -34,31 +34,35 @@ function Approved(props) {
         }}
         >
           <div className="invoiceIcon">
-            <Avatar>{params.row.merchantName.charAt(0)}</Avatar>
+            <Avatar>{params.row.id}</Avatar>
           </div>
         </div>
       ),
     },
-    { field: 'merchantName', headerName: 'Merchant name', width: 180 },
-    { field: 'joinedOn', headerName: 'Joined On', width: 120 },
+    { field: 'name', headerName: 'Merchant name', width: 180 },
     {
-      field: 'totalSold',
-      headerName: 'Total Sold',
-      width: 120,
-    },
-    {
-      field: 'profit',
-      headerName: 'Profit made (all-time)',
+      field: 'username',
+      headerName: 'Merchant username',
       width: 180,
-      valueGetter: (params) => (
-        `${params.row.profit}$`
-      ),
     },
     {
-      field: 'totalItems',
-      headerName: 'Total Items',
-      width: 120,
+      field: 'createdAt',
+      headerName: 'Joined On',
+      width: 150,
     },
+    // {
+    //   field: 'profit',
+    //   headerName: 'Profit made (all-time)',
+    //   width: 180,
+    //   valueGetter: (params) => (
+    //     `${params.row.profit}$`
+    //   ),
+    // },
+    // {
+    //   field: 'totalItems',
+    //   headerName: 'Total Items',
+    //   width: 120,
+    // },
     {
       field: 'action',
       headerName: 'Action',

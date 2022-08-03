@@ -2,7 +2,6 @@ import React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { Avatar, Menu, MenuItem } from '@mui/material';
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 function AllCustomer(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);

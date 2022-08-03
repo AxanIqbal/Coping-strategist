@@ -1,17 +1,21 @@
 import React from 'react';
 import './SideBar.css';
 import { Link, useMatch, useNavigate } from 'react-router-dom';
-import { signOut } from 'firebase/auth';
-import { auth } from '../../utils/firebase/firebase';
+import { useDispatch } from 'react-redux';
 import NameSvg from '../../Assets/name.svg';
+import { logout } from '../../redux/slicers/userSlicer';
 
 function SideBar(props) {
   const dashboard = useMatch('/');
   const Merchants = useMatch('/merchants');
   const Notification = useMatch('/notification');
   const Settings = useMatch('/settings');
+  const Doctors = useMatch('/doctors');
+
   const { children } = props;
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   return (
     <div className="mainContainer">
       <div className="container1">
@@ -26,7 +30,13 @@ function SideBar(props) {
             <Link className={Merchants ? 'optionSelected' : 'optionUnselected'} to="/merchants">
               <p>Merchants</p>
             </Link>
-            <Link className={Notification ? 'optionSelected' : 'optionUnselected'} to="/notification">
+            <Link className={Doctors ? 'optionSelected' : 'optionUnselected'} to="/doctors">
+              <p>Doctors</p>
+            </Link>
+            <Link
+              className={Notification ? 'optionSelected' : 'optionUnselected'}
+              to="/notification"
+            >
               <p>Notification</p>
             </Link>
             <Link className={Settings ? 'optionSelected' : 'optionUnselected'} to="/settings">
@@ -37,7 +47,7 @@ function SideBar(props) {
         <div className="barContainer3">
           <button
             onClick={async () => {
-              await signOut(auth);
+              dispatch(logout());
               navigate('/login');
             }}
             className="SignOutBtn"

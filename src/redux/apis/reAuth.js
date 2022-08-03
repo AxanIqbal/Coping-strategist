@@ -5,7 +5,7 @@ import { logout } from '../slicers/userSlicer';
 // http://192.168.0.182:3000/
 
 export const baseQuery = fetchBaseQuery({
-  baseUrl: 'http://localhost:3000/',
+  baseUrl: 'https://coping-strategist.herokuapp.com/',
   credentials: 'include',
   refetchOnReconnect: true,
   // prepareHeaders: (headers, {getState}) => {
